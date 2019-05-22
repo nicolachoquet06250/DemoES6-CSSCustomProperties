@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les Web Components</title>
+</head>
+<body>
+    <lazy-image id="image" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo-ubuntu_cof-orange-hex.svg"
+                alt="logo ubuntu"
+                onclick={onElementClick} ></lazy-image>
+
+    <script src="WebComponentsJs/WebComponentsLoader.js"></script>
+    <script src="scripts/MyComponentsLoader.js"></script>
+    <script> new MyComponentsLoader().LoadAll(); </script>
+</body>
+</html>
