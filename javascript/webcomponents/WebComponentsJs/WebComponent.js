@@ -18,9 +18,6 @@ class WebComponent extends HTMLElement {
     get _template() {
         let template = document.createElement('template');
         if(this.Template) template.innerHTML = (this.Style ? `<style>${this.Style}</style>` : '') + this.Template;
-        if(this.Style) {
-            window.ShadyCSS && window.ShadyCSS.prepareTemplate(template, tagName);
-        }
         return template;
     }
     get useShadow() {

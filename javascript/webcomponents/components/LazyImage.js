@@ -46,12 +46,9 @@ WebComponent.List.add(
         finishBuildElement() {
             this.setShadowImage();
 
-            this.src = this.getAttribute('src');
-            this.alt = this.getAttribute('alt');
-
             // Set the shadow img attributes.
-            this.shadowImage.src = this.src;
-            this.shadowImage.alt = this.alt;
+            this.shadowImage.src = this.src = this.getAttribute('src');
+            this.shadowImage.alt = this.alt = this.getAttribute('alt');
         }
         onLoad() {
             setTimeout(() => {

@@ -16,6 +16,7 @@ class WebComponentsLoader {
             script.src = (this.LibPath !== null ? this.LibPath : '' ) + this.LibClasses[_class];
             document.querySelector('body').append(script);
         }
+        console.log('all lib has been loaded !');
     }
 
     LoadMyComponents() {
@@ -23,6 +24,7 @@ class WebComponentsLoader {
             let script = document.createElement('script');
             script.src = (this.PathRoot !== null ? this.PathRoot : '' ) + this.Components[component];
             document.querySelector('body').append(script);
+            console.log(`${component} component is been loaded !`);
         }
     }
 

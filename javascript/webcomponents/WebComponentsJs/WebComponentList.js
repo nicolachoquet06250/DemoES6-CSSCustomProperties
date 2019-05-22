@@ -1,3 +1,7 @@
+const register = (tag, webComponent) => {
+    customElements.define(tag, webComponent);
+};
+
 class WebComponentList {
 
     constructor() {
@@ -7,8 +11,7 @@ class WebComponentList {
     add(tag, webComponent) {
         if(typeof webComponent === 'function') {
             this.list[tag] = webComponent;
-            const register = () => customElements.define(tag, webComponent);
-            window.WebComponents ? window.WebComponents.waitFor(register) : register();
+            register(tag, webComponent);
         }
     }
 

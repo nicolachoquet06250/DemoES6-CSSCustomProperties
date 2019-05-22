@@ -4,7 +4,8 @@ class MyComponentsLoader extends WebComponentsLoader {
     }
     get Components() {
         return {
-            LazyImage: 'LazyImage.js'
+            LazyImage: 'LazyImage.js',
+            Wysiwyg: 'Wysiwyg.js'
         }
     }
 }
