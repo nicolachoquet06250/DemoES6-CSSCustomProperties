@@ -1,0 +1,23 @@
+:root {
+    /* Déclaration des variables */
+    --global_sante_theme: darkblue;
+    --global_sexo_theme: pink;
+
+    --theme_demo_width: 150px;
+    --theme_demo_height: 150px;
+}
+
+div.theme-demo {
+    /* Utilisation des variables de type size */
+    width: var(--theme_demo_width);
+    height: var(--theme_demo_height);
+}
+
+/* Utilisation des variables de type color */
+div.sante {
+    background-color: var(--global_sante_theme);
+}
+
+div.sexo {
+    background-color: var(--global_sexo_theme);
+}
