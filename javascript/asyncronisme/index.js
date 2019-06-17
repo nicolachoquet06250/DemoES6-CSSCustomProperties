@@ -1,4 +1,6 @@
+// With async / Await
 let fs = require('fs');
+let https = require('https');
 const voidCallback = () => null;
 
 class Logger {
@@ -65,3 +67,77 @@ async function getAdditionAsynchroneParallele() {
 }
 
 getAdditionAsynchroneParallele().then(r => Logger.File('./my_file.txt', r));
+
+// With Promises
+let promise2 = new Promise(resolve => {
+    resolve({ operation: `2 + 65 = `, result: 2 + 65 });
+});
+
+promise2.then(console.log);
+
+// then method is executed when all elements are loaded
+Promise.all([
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve("I wait 8s"), 8000);
+    }),
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve("I wait 4s"), 4000);
+    })
+]).then(console.log)
+    .catch(console.error);
+
+// concrete example
+// two requests done in a same time and return result of two requests in one array
+Promise.all([
+    new Promise((resolve, reject) => {
+        let complete_data = '';
+        https.get('https://holidayapi.com/v1/holidays?key=11118eca-28a0-4a03-88cf-327754ee5cc8&country=FR&year=2018', r => {
+            r.on('data',d => {
+                complete_data += d.toString();
+                if(complete_data.substr(complete_data.length - 2, 2) === ']}') resolve(JSON.parse(complete_data));
+            })
+        }).on('error', reject);
+    }),
+    new Promise((resolve, reject) => {
+        let complete_data = '';
+        https.get('https://api.coindesk.com/v1/bpi/currentprice/EUR.json', r => {
+            r.on('data',d => {
+                complete_data += d.toString();
+                if(complete_data.substr(complete_data.length - 2, 2) === '}}') resolve(JSON.parse(d.toString()));
+            })
+        }).on('error', reject);
+    })
+]).then(r => console.log('all ', r)).catch(console.error);
+
+// then method is executed when the first element is loaded
+Promise.race([
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(new Map([["text", "I wait 8s"], ["v", "one"]])), 8000);
+    }),
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(new Map([["text", "I wait 4s"], ["v", "two"]])), 4000);
+    })
+]).then(set => console.log(set.get('text'), set.get('v')))
+    .catch(console.error);
+
+// concrete example
+Promise.race([
+    new Promise((resolve, reject) => {
+        let complete_data = '';
+        https.get('https://holidayapi.com/v1/holidays?key=11118eca-28a0-4a03-88cf-327754ee5cc8&country=FR&year=2018', r => {
+            r.on('data',d => {
+                complete_data += d.toString();
+                if(complete_data.substr(complete_data.length - 2, 2) === ']}') resolve(JSON.parse(complete_data));
+            })
+        }).on('error', reject);
+    }),
+    new Promise((resolve, reject) => {
+        let complete_data = '';
+        https.get('https://api.coindesk.com/v1/bpi/currentprice/EUR.json', r => {
+            r.on('data',d => {
+                complete_data += d.toString();
+                if(complete_data.substr(complete_data.length - 2, 2) === '}}') resolve(JSON.parse(d.toString()));
+            })
+        }).on('error', reject);
+    })
+]).then(r => console.log('race ', r)).catch(console.error);
