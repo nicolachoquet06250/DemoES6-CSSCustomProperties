@@ -7,3 +7,6 @@
 
  - Racine: https://nicolachoquet06250.github.com/DemoES6-CSSCustomProperties
  - WebComponents: https://nicolachoquet06250.github.com/DemoES6-CSSCustomProperties/javascript/webcomponents
+ 
+ - Générateur de charts de tout types
+    - https://quickchart.io/
