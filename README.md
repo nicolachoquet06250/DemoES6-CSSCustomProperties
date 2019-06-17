@@ -10,3 +10,5 @@
  
  - Générateur de charts de tout types
     - https://quickchart.io/
+ - Générateur de QR codes
+    - http://goqr.me/api/
